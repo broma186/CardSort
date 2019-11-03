@@ -1,13 +1,14 @@
-package com.example.todocreator.di.module
+package com.example.cardsort.di.module
 
 import android.content.Context
 import androidx.room.Room
 import com.example.cardsort.data.CardSortDao
 import com.example.cardsort.utils.DATABASE_NAME
-import com.example.gitrepositoryhub.data.CardSortDatabase
+import com.example.cardsort.data.CardSortDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
+
 
 @Module
 object CardSortDbModule {

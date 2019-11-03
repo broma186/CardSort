@@ -39,8 +39,6 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
     }
 
     fun getCards() {
-        CoroutineScope(Dispatchers.IO).launch {
-            cardLiveData.value = cardRepository.getCards()
-        }
+        cardLiveData.value = cardRepository.getCards()
     }
 }

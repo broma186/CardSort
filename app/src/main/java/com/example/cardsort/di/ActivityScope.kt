@@ -1,4 +1,4 @@
-package dagger
+package com.example.cardsort.di
 
 import javax.inject.Scope
 

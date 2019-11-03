@@ -1,4 +1,4 @@
-package com.example.gitrepositoryhub.viewmodels
+package com.example.cardsort.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

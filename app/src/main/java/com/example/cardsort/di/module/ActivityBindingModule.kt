@@ -1,7 +1,7 @@
-package com.example.gitrepositoryhub.di.module
+package com.example.cardsort.di.module
 
 import com.example.cardsort.CardActivity
-import dagger.ActivityScope
+import com.example.cardsort.di.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

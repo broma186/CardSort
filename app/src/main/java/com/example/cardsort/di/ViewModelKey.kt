@@ -1,4 +1,4 @@
-package com.example.gitrepositoryhub.di
+package com.example.cardsort.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
