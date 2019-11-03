@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CardSort</string>
+    <string name="unsorted_boarding_cards">Unsorted Boarding Cards</string>
+    <string name="sort_trip_button">Sort Trip</string>
+</resources>
