@@ -20,7 +20,7 @@ object AppModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideTodoApplication(cardSortApplication: CardSortApplication ): CardSortApplication {
+    fun provideTodoApplication(cardSortApplication: CardSortApplication): CardSortApplication {
         return cardSortApplication
     }
 }

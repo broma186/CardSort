@@ -1,13 +1,9 @@
 package com.example.gitrepositoryhub.di.module
 
-import android.content.Context
-import com.example.cardsort.BoardingCardActivity
+import com.example.cardsort.CardActivity
 import dagger.ActivityScope
-import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import javax.inject.Singleton
 
 /*
 Allows injection to the repositories activity so all subseqeuent dependencies can
@@ -18,5 +14,5 @@ Allows injection to the repositories activity so all subseqeuent dependencies ca
 abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector
-    abstract fun contributeBoardingCardActivity(): BoardingCardActivity
+    abstract fun contributeCardActivity(): CardActivity
 }

@@ -17,8 +17,7 @@ object CardSortDbModule {
     fun provideCardSortDatabase(context: Context): CardSortDatabase {
         return Room.databaseBuilder(
             context,
-            CardSortDatabase::class.java, DATABASE_NAME
-        )
+            CardSortDatabase::class.java, DATABASE_NAME)
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build()
@@ -28,6 +27,6 @@ object CardSortDbModule {
     @Singleton
     @Provides
     fun provideCardSortDao(cardSortDatabase: CardSortDatabase): CardSortDao {
-        return cardSortDatabase.todoDao()
+        return cardSortDatabase.cardSortDao()
     }
 }

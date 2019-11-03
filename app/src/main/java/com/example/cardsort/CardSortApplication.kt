@@ -1,7 +1,6 @@
 package com.example.cardsort
 
 import android.app.Application
-import android.content.Context
 import com.example.cardsort.di.AppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -15,8 +14,6 @@ class CardSortApplication : Application(), HasAndroidInjector {
 
     private lateinit var appComponent: AppComponent
 
-    val context : Context = this
-
     override fun onCreate() {
         super.onCreate()
         appComponent = DaggerAppComponent.builder()
@@ -28,5 +25,4 @@ class CardSortApplication : Application(), HasAndroidInjector {
     override fun androidInjector(): AndroidInjector<Any> {
         return androidInjector;
     }
-
 }

@@ -20,7 +20,7 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(CardListViewModel::class)
-    abstract fun bindRepositoriesViewModel(cardListViewModel: CardListViewModel): ViewModel
+    abstract fun bindCardListViewModel(cardListViewModel: CardListViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(cardViewModelFactory: CardViewModelFactory): ViewModelProvider.Factory

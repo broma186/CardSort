@@ -22,20 +22,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/boarding_card_list"
+            app:layout_constraintBottom_toTopOf="@+id/card_list"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/unsorted_boarding_cards"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/boarding_card_list"
+            android:id="@+id/card_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize"
             android:clipToPadding="false"
             app:layout_constraintTop_toTopOf="@+id/sort_state"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/list_item_boarding_card" />
+            tools:listitem="@layout/list_item_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
