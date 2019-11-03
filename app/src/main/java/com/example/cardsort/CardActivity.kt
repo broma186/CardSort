@@ -2,6 +2,7 @@ package com.example.cardsort
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -42,6 +43,14 @@ class CardActivity : AppCompatActivity(), HasAndroidInjector {
         setupCardList()
 
         observeList()
+
+        setSortListener()
+    }
+
+    fun setSortListener() {
+        binding.setSortListener {
+           // cardListViewModel.
+        }
     }
 
     fun setupCardList() {

@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
     tableName = "card",
     indices = [Index("id")]
 )
-data class Card(
+data class Card (
     @PrimaryKey @ColumnInfo(name = "id") val id: Int, // Keep the same so is replaced every auth download.
     @ColumnInfo(name = "transport_type") val transportType: String,
     @ColumnInfo(name = "arrival") val arrival: String,

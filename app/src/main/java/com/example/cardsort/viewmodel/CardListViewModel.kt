@@ -41,4 +41,11 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
     fun getCards() {
         cardLiveData.value = cardRepository.getCards()
     }
+
+    fun sortCards() {
+
+        val cards = cardLiveData.value
+
+
+    }
 }
