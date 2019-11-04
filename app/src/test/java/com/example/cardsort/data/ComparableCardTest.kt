@@ -22,9 +22,26 @@ class ComparableCardTest {
              "Madagascar", "Madrid", null, "32C", 45),
          ComparableCard(6, TransPortType.FLIGHT.transPortType,
              "New York JFK", "Jerusalem", null, "27A", 22)
+
+     
     )
 
+    fun findUniques(list:ArrayList<String>) : ArrayList<String> {
+        val resultList = arrayListOf<String>()
+        val hm = HashMap<String, Int>()
 
+        for (i in list) {
+            val j = hm[i]
+            hm[i] = if ((j == null)) 1 else j!! + 1
+        }
+        for (`val` in hm.entries) {
+            // Log.d("TEST", "Element " + `val`.key + " " + "occurs" + ": " + `val`.value + " times")
+            if (`val`.value == 1) {
+                resultList.add(`val`.key)
+            }
+        }
+        return resultList
+    }
 
     @Test
     fun sortCards() {
@@ -46,7 +63,33 @@ class ComparableCardTest {
 
              "New York JFK --> Jerusalem"
          */
-        val unsortedList = arrayListOf<ComparableCard>()
+
+/*        var arrivalsAndDestinations = arrayListOf<String>()
+
+        for (i in cards.indices) {
+            val card = cards.get(i)
+            arrivalsAndDestinations.add(card.arrival)
+            arrivalsAndDestinations.add(card.destination)
+        }
+        val uniquePlaces = findUniques(arrivalsAndDestinations)
+
+        // Find the card with the unique elements for start/end
+
+        var startOrEndCards = arrayListOf<ComparableCard>()
+        for(i in cards.indices) {
+            val currentCard = cards.get(i)
+            for (j in uniquePlaces.indices) {
+                if (currentCard.arrival.equals(uniquePlaces.get(j))
+                    || currentCard.destination.equals(uniquePlaces.get(j))) {
+                    startOrEndCards.add(currentCard)
+                }
+            }
+        }
+
+        for (i in startOrEndCards.indices) {
+            cards.remove(startOrEndCards.get(i))
+        }*/
+
         for (i in cards.indices) {
             val current = cards.get(i)
 
@@ -66,7 +109,7 @@ class ComparableCardTest {
                 }
             }
         }
-
+        Collections.rotate(cards, 2)
 
         cards.forEach() {
             Log.d("TEST", it.arrival + " > " + it.destination)
