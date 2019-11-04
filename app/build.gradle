@@ -61,4 +61,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
 
+    testImplementation 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0'
+
+
 }

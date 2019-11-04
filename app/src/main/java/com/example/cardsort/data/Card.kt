@@ -19,3 +19,6 @@ data class Card (
     @ColumnInfo(name = "seat") val seat: String?,
     @ColumnInfo(name = "baggage_counter_id") val baggageCounterId: Int?
 )
+
+
+

@@ -21,6 +21,7 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Handler
+import com.example.cardsort.utils.SORT_LOADING_TIME
 
 
 class CardActivity : AppCompatActivity(), HasAndroidInjector {
@@ -54,35 +55,45 @@ class CardActivity : AppCompatActivity(), HasAndroidInjector {
         setSortListener()
     }
 
-    fun setSortListener() {
-        binding.setSortListener {
-
-            binding.progress.visibility = View.VISIBLE
-            binding.cardList.visibility = View.GONE
-
-            cardListViewModel.getSortedCards()
-
-            Handler().postDelayed(
-                Runnable {
-                    binding.progress.visibility = View.GONE
-                    binding.cardList.visibility = View.VISIBLE
-                    binding.sortState.text = getString(R.string.sorted_cards)
-                },
-                3000)
-        }
-    }
-
     fun setupCardList() {
-
         binding.cardList.layoutManager = LinearLayoutManager(this)
         adapter = CardAdapter()
         binding.cardList.adapter = adapter
-
     }
 
     fun observeList() {
         cardListViewModel.cardLiveData.observe(this, Observer { result ->
             adapter.submitList(result)
         })
+    }
+
+    fun setSortListener() {
+        binding.setSortListener {
+
+            toggleProgress(View.VISIBLE)
+            toggleCardList(View.GONE)
+
+            cardListViewModel.getSortedCards() // Sorts the livedata card list which is refreshed in observeUI.
+
+            Handler().postDelayed(
+                Runnable {
+                    toggleProgress(View.GONE)
+                    toggleCardList(View.VISIBLE)
+                    setSortedState(getString(R.string.sorted_cards))
+                },
+                SORT_LOADING_TIME)
+        }
+    }
+
+    fun toggleProgress(visibility : Int) {
+        binding.progress.visibility = visibility
+    }
+
+    fun toggleCardList(visibility : Int) {
+        binding.cardList.visibility = visibility
+    }
+
+    fun setSortedState(state : String?) {
+        binding.sortState.text = getString(R.string.sorted_cards)
     }
 }

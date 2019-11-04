@@ -22,9 +22,11 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
     init {
         generateCards()
         getCards()
-
     }
 
+    /*
+    Create hardcoded cards and add them to the database using the repository dependency.
+     */
     fun generateCards() {
 
         val cards = listOf<Card>(
@@ -40,10 +42,14 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
         cardRepository.writeCards(cards)
     }
 
+    // Assign the cards written to the repository to live data instance used for the recycler view list.
+    // This will notify the activity using an oberver that the unsorted data is ready to be displayed.
     fun getCards() {
         cardLiveData.value = cardRepository.getCards()
     }
 
+    // Gets the repository cards and runs my sorting algorithm multiple times to ensure all items are
+    // correctly sorted. Currently I am using 4 sort iterations.
     fun getSortedCards() {
 
         val cards = cardRepository.getCards()
@@ -53,11 +59,10 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
             sort(cards)
             i++
         }
-
         cardLiveData.value = cards
     }
 
-    // Sorting algorithm for cards
+    // Sorting algorithm for cards.
     fun sort(cards : List<Card>) {
         for (i in cards.indices) {
             val current = cards.get(i)
