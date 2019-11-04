@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModel
 import com.example.cardsort.data.Card
 import com.example.cardsort.data.CardRepository
 import com.example.cardsort.data.TransPortType
+import com.example.cardsort.utils.SORT_ITERATION_MAX
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import java.util.*
 import javax.inject.Inject
 
 class CardListViewModel @Inject constructor(val cardRepository: CardRepository) : ViewModel() {
@@ -42,10 +44,35 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
         cardLiveData.value = cardRepository.getCards()
     }
 
-    fun sortCards() {
+    fun getSortedCards() {
 
-        val cards = cardLiveData.value
+        val cards = cardRepository.getCards()
 
+        var i = 0
+        while (i < SORT_ITERATION_MAX) {
+            sort(cards)
+            i++
+        }
 
+        cardLiveData.value = cards
+    }
+
+    // Sorting algorithm for cards
+    fun sort(cards : List<Card>) {
+        for (i in cards.indices) {
+            val current = cards.get(i)
+            for (j in cards.indices) {
+                val next = cards.get(j)
+                if (current.arrival.equals(next.destination)) {
+                    val indexOfCurrent = cards.indexOf(current)
+                    val indexOfNext = cards.indexOf(next)
+                    if (indexOfCurrent > indexOfNext + 1) {
+                        Collections.rotate(cards.subList(indexOfNext, indexOfCurrent + 1), -1)
+                    } else {
+                        Collections.rotate(cards.subList(indexOfCurrent, indexOfNext + 1), -1)
+                    }
+                }
+            }
+        }
     }
 }

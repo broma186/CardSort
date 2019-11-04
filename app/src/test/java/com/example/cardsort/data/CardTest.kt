@@ -7,57 +7,19 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ComparableCardTest {
+class CardTest {
 
-     val cards = arrayListOf<ComparableCard>(
-         ComparableCard(2, TransPortType.BUS.transPortType,
+     val cards = arrayListOf<Card>(
+         Card(2, TransPortType.BUS.transPortType,
              "Barcelona", "Girona Airport", null, null, null),
-         ComparableCard(3, TransPortType.FLIGHT.transPortType,
+         Card(3, TransPortType.FLIGHT.transPortType,
              "London", "New York JFK", "22", "7B", null),
-         ComparableCard(4, TransPortType.TRAIN.transPortType,
+         Card(4, TransPortType.TRAIN.transPortType,
              "Madrid", "Barcelona", null, "45B", null),
-         ComparableCard(1, TransPortType.FLIGHT.transPortType,
+         Card(1, TransPortType.FLIGHT.transPortType,
              "Girona Airport", "London", "45B", "3A", 344)
-
-
-
-/*
-    Girona Airport -- > London
-
-             "Barcelona --> Girona Airport"
-
-             "London --> New York JFK"
-
-             "Madrid --> Barcelona"
-
-             "Madagascar --> Madrid"
-
-             "New York JFK --> Jerusalem"
- */
-
-
-
-
-
-     
     )
 
-    fun findUniques(list:ArrayList<String>) : ArrayList<String> {
-        val resultList = arrayListOf<String>()
-        val hm = HashMap<String, Int>()
-
-        for (i in list) {
-            val j = hm[i]
-            hm[i] = if ((j == null)) 1 else j!! + 1
-        }
-        for (`val` in hm.entries) {
-            // Log.d("TEST", "Element " + `val`.key + " " + "occurs" + ": " + `val`.value + " times")
-            if (`val`.value == 1) {
-                resultList.add(`val`.key)
-            }
-        }
-        return resultList
-    }
 
     fun sort() {
         for (i in cards.indices) {
@@ -71,7 +33,6 @@ class ComparableCardTest {
                         Collections.rotate(cards.subList(indexOfNext, indexOfCurrent + 1), -1)
                     } else {
                         Collections.rotate(cards.subList(indexOfCurrent, indexOfNext + 1), -1)
-
                     }
                 }
             }
@@ -80,29 +41,11 @@ class ComparableCardTest {
 
     @Test
     fun sortCards() {
-        /*
-              Girona Airport -- > London
-
-             "Barcelona --> Girona Airport"
-
-             "London --> New York JFK"
-
-             "Madrid --> Barcelona"
-
-             "Madagascar --> Madrid"
-
-             "New York JFK --> Jerusalem"
-         */
-
 
         sort()
         sort()
         sort()
         sort()
-        if (cards.size % 2 == 0) {
-           // Collections.rotate(cards, 1)
-
-        }
 
         cards.forEach() {
             Log.d("TEST", it.arrival + " > " + it.destination)

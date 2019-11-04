@@ -2,6 +2,7 @@ package com.example.cardsort
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -15,6 +16,12 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
+import androidx.core.os.HandlerCompat.postDelayed
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Handler
+
 
 class CardActivity : AppCompatActivity(), HasAndroidInjector {
 
@@ -49,7 +56,19 @@ class CardActivity : AppCompatActivity(), HasAndroidInjector {
 
     fun setSortListener() {
         binding.setSortListener {
-           // cardListViewModel.
+
+            binding.progress.visibility = View.VISIBLE
+            binding.cardList.visibility = View.GONE
+
+            cardListViewModel.getSortedCards()
+
+            Handler().postDelayed(
+                Runnable {
+                    binding.progress.visibility = View.GONE
+                    binding.cardList.visibility = View.VISIBLE
+                    binding.sortState.text = getString(R.string.sorted_cards)
+                },
+                3000)
         }
     }
 
