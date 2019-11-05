@@ -1,7 +1,6 @@
 package com.example.cardsort.viewmodel
 
 import com.example.cardsort.data.Card
-import com.example.cardsort.data.CardTest
 import com.example.cardsort.data.TransPortType
 import org.junit.Before
 import org.junit.Test
@@ -33,9 +32,6 @@ class CardListViewModelTest {
     fun sort() {
 
         sortCards()
-        sortCards()
-        sortCards()
-        sortCards()
 
         cards.forEach() {
             Log.d("TEST", it.arrival + " > " + it.destination)
@@ -43,21 +39,35 @@ class CardListViewModelTest {
     }
 
     fun sortCards() {
-        for (i in cards.indices) {
-            val current = cards.get(i)
-            for (j in cards.indices) {
-                val next = cards.get(j)
-                if (current.arrival.equals(next.destination)) {
-                    val indexOfCurrent = cards.indexOf(current)
-                    val indexOfNext = cards.indexOf(next)
-                    if (indexOfCurrent > indexOfNext + 1) {
-                        Collections.rotate(cards.subList(indexOfNext, indexOfCurrent + 1), -1)
-                    } else {
-                        Collections.rotate(cards.subList(indexOfCurrent, indexOfNext + 1), -1)
+        while (isSorted() == false) {
+            for (i in cards.indices) {
+                val current = cards.get(i)
+                for (j in cards.indices) {
+                    val next = cards.get(j)
+                    if (current.arrival.equals(next.destination)) {
+                        val indexOfCurrent = cards.indexOf(current)
+                        val indexOfNext = cards.indexOf(next)
+                        if (indexOfCurrent > indexOfNext + 1) {
+                            Collections.rotate(cards.subList(indexOfNext, indexOfCurrent + 1), -1)
+                        } else {
+                            Collections.rotate(cards.subList(indexOfCurrent, indexOfNext + 1), -1)
+                        }
                     }
                 }
             }
         }
+    }
+
+    fun isSorted() : Boolean {
+        var sorted = true
+        for (i in 0 until cards.size - 1) {
+            val current = cards.get(i)
+            val next = cards.get(i + 1)
+            if (!current.destination.equals(next.arrival)) {
+                return false
+            }
+        }
+        return true
     }
 
     object Log {
