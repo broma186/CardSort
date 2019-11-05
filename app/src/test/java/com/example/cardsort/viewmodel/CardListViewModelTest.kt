@@ -31,7 +31,9 @@ class CardListViewModelTest {
     @Test
     fun sort() {
 
-        sortCards()
+        while (isSorted() == false) {
+            sortCards()
+        }
 
         cards.forEach() {
             Log.d("TEST", it.arrival + " > " + it.destination)
@@ -39,19 +41,17 @@ class CardListViewModelTest {
     }
 
     fun sortCards() {
-        while (isSorted() == false) {
-            for (i in cards.indices) {
-                val current = cards.get(i)
-                for (j in cards.indices) {
-                    val next = cards.get(j)
-                    if (current.arrival.equals(next.destination)) {
-                        val indexOfCurrent = cards.indexOf(current)
-                        val indexOfNext = cards.indexOf(next)
-                        if (indexOfCurrent > indexOfNext + 1) {
-                            Collections.rotate(cards.subList(indexOfNext, indexOfCurrent + 1), -1)
-                        } else {
-                            Collections.rotate(cards.subList(indexOfCurrent, indexOfNext + 1), -1)
-                        }
+        for (i in cards.indices) {
+            val current = cards.get(i)
+            for (j in cards.indices) {
+                val next = cards.get(j)
+                if (current.arrival.equals(next.destination)) {
+                    val indexOfCurrent = cards.indexOf(current)
+                    val indexOfNext = cards.indexOf(next)
+                    if (indexOfCurrent > indexOfNext + 1) {
+                        Collections.rotate(cards.subList(indexOfNext, indexOfCurrent + 1), -1)
+                    } else {
+                        Collections.rotate(cards.subList(indexOfCurrent, indexOfNext + 1), -1)
                     }
                 }
             }

@@ -54,11 +54,10 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
 
         val cards = cardRepository.getCards()
 
-        var i = 0
-        while (i < SORT_ITERATION_MAX) {
+        while (isSorted(cards) == false) {
             sort(cards)
-            i++
         }
+
         cardLiveData.value = cards
     }
 
@@ -79,5 +78,17 @@ class CardListViewModel @Inject constructor(val cardRepository: CardRepository) 
                 }
             }
         }
+    }
+
+    fun isSorted(cards : List<Card>) : Boolean {
+        var sorted = true
+        for (i in 0 until cards.size - 1) {
+            val current = cards.get(i)
+            val next = cards.get(i + 1)
+            if (!current.destination.equals(next.arrival)) {
+                return false
+            }
+        }
+        return true
     }
 }
